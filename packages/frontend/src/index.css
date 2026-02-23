@@ -4,5 +4,72 @@
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+form fieldset {
+  border: 0;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+form label {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+form input,
+form select {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+}
+
+form button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+[role="alert"] {
+  color: #b91c1c;
+  margin: 1rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+section {
+  margin-top: 2rem;
+}
+
+dl {
+  display: grid;
+  gap: 0.5rem;
+}
+
+dl div {
+  display: flex;
+  gap: 1rem;
+}
+
+dt {
+  font-weight: 600;
+  min-width: 10rem;
 }

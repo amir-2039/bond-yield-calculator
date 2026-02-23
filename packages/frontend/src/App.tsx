@@ -1,12 +1,58 @@
-/**
- * Root component.
- * Bond form and results will be added in later phases.
- */
+import { useState } from 'react';
+import type { BondInput, BondOutput } from '@bond-yield/shared';
+import { CouponFrequency } from '@bond-yield/shared';
+import { calculateBond } from './api/bondApi';
+import { BondForm } from './components/BondForm';
+import { BondResults } from './components/BondResults';
+import { CashFlowTable } from './components/CashFlowTable';
+
+const DEFAULT_INPUT: BondInput = {
+  faceValue: 1000,
+  annualCouponRate: 5,
+  marketPrice: 1000,
+  yearsToMaturity: 10,
+  couponFrequency: CouponFrequency.ANNUAL,
+};
+
 export function App() {
+  const [input, setInput] = useState<BondInput>(DEFAULT_INPUT);
+  const [output, setOutput] = useState<BondOutput | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleCalculate = async () => {
+    setError(null);
+    setLoading(true);
+    try {
+      const result = await calculateBond(input);
+      setOutput(result);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Calculation failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main>
       <h1>Bond Yield Calculator</h1>
-      <p>Foundation scaffold ready.</p>
+      <BondForm
+        value={input}
+        onChange={setInput}
+        onSubmit={handleCalculate}
+        loading={loading}
+      />
+      {error && (
+        <div role="alert">
+          {error}
+        </div>
+      )}
+      {output && (
+        <>
+          <BondResults output={output} />
+          <CashFlowTable items={output.cashFlowSchedule} />
+        </>
+      )}
     </main>
   );
 }
