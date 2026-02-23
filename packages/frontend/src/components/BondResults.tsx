@@ -1,11 +1,11 @@
 import type { BondOutput } from '@bond-yield/shared';
+import { formatCurrency, formatPercent } from '../utils/format';
 
 const STATUS_LABELS: Record<string, string> = {
   premium: 'Trading above face value',
   discount: 'Trading below face value',
   par: 'Trading at par',
 };
-import { formatCurrency, formatPercent } from '../utils/format';
 
 interface BondResultsProps {
   output: BondOutput;
@@ -31,7 +31,7 @@ export function BondResults({ output }: BondResultsProps) {
         <div>
           <dt>Status</dt>
           <dd>
-            <span data-status={output.premiumOrDiscount}>
+            <span className="badge" data-status={output.premiumOrDiscount}>
               {STATUS_LABELS[output.premiumOrDiscount] ?? output.premiumOrDiscount}
             </span>
           </dd>

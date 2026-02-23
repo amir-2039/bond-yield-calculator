@@ -11,7 +11,7 @@ export function CashFlowTable({ items }: CashFlowTableProps) {
   return (
     <section aria-labelledby="cashflow-heading">
       <h2 id="cashflow-heading">Cash flow schedule</h2>
-      <div style={{ overflowX: 'auto' }}>
+      <div className="table-wrap">
         <table>
           <thead>
             <tr>

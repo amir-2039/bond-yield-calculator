@@ -36,7 +36,7 @@ export function InputField({
         aria-describedby={error ? `${id}-error` : undefined}
       />
       {error && (
-        <span id={`${id}-error`} role="alert">
+        <span id={`${id}-error`} className="input-error" role="alert">
           {error}
         </span>
       )}

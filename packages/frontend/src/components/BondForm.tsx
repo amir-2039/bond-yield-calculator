@@ -1,11 +1,11 @@
 import type { BondInput } from '@bond-yield/shared';
 import { CouponFrequency } from '@bond-yield/shared';
+import { InputField } from './InputField';
 
 const FREQUENCY_OPTIONS: Array<{ value: BondInput['couponFrequency']; label: string }> = [
   { value: CouponFrequency.ANNUAL, label: 'Annual' },
   { value: CouponFrequency.SEMI_ANNUAL, label: 'Semi-Annual' },
 ];
-import { InputField } from './InputField';
 
 interface BondFormProps {
   value: BondInput;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { BondInput, BondOutput } from '@bond-yield/shared';
 import { CouponFrequency } from '@bond-yield/shared';
-import { calculateBond } from './api/bondApi';
+import { BondCalculationError, calculateBond } from './api/bondApi';
 import { BondForm } from './components/BondForm';
 import { BondResults } from './components/BondResults';
 import { CashFlowTable } from './components/CashFlowTable';
@@ -19,15 +19,22 @@ export function App() {
   const [output, setOutput] = useState<BondOutput | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const handleCalculate = async () => {
     setError(null);
+    setFieldErrors({});
     setLoading(true);
     try {
       const result = await calculateBond(input);
       setOutput(result);
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Calculation failed');
+      if (e instanceof BondCalculationError) {
+        setError(e.message);
+        setFieldErrors(e.getFieldErrors());
+      } else {
+        setError(e instanceof Error ? e.message : 'Calculation failed');
+      }
     } finally {
       setLoading(false);
     }
@@ -41,9 +48,10 @@ export function App() {
         onChange={setInput}
         onSubmit={handleCalculate}
         loading={loading}
+        errors={fieldErrors}
       />
       {error && (
-        <div role="alert">
+        <div className="alert" role="alert">
           {error}
         </div>
       )}
