@@ -1,0 +1,20 @@
+{
+  "name": "bond-yield-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bond Yield Calculator web app - React frontend, NestJS backend",
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:shared": "pnpm --filter @bond-yield/shared build",
+    "build:backend": "pnpm --filter @bond-yield/backend build",
+    "build:frontend": "pnpm --filter @bond-yield/frontend build",
+    "dev:backend": "pnpm --filter @bond-yield/backend dev",
+    "dev:frontend": "pnpm --filter @bond-yield/frontend dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "engines": {
+    "node": ">=20"
+  }
+}
