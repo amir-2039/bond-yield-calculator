@@ -59,9 +59,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
         type: `https://httpstatuses.com/${status}`,
         title: this.getTitle(status),
         status,
-        detail: isObject && 'message' in res && typeof (res as { message: unknown }).message === 'string'
-          ? (res as { message: string }).message
-          : exception.message,
+        detail:
+          isObject && 'message' in res && typeof (res as { message: unknown }).message === 'string'
+            ? (res as { message: string }).message
+            : exception.message,
         errors,
         instance: request.url,
       };

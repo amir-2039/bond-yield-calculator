@@ -4,7 +4,10 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
 }
 
@@ -45,7 +48,7 @@ form select {
   font-size: 1rem;
 }
 
-form input[aria-invalid="true"] {
+form input[aria-invalid='true'] {
   border-color: #b91c1c;
 }
 
@@ -70,7 +73,7 @@ form button:disabled {
   color: #b91c1c;
 }
 
-.alert[role="alert"] {
+.alert[role='alert'] {
   font-weight: 500;
 }
 
@@ -88,17 +91,17 @@ form button:disabled {
   font-weight: 500;
 }
 
-.badge[data-status="premium"] {
+.badge[data-status='premium'] {
   background-color: #dcfce7;
   color: #166534;
 }
 
-.badge[data-status="discount"] {
+.badge[data-status='discount'] {
   background-color: #fef3c7;
   color: #92400e;
 }
 
-.badge[data-status="par"] {
+.badge[data-status='par'] {
   background-color: #e0e7ff;
   color: #3730a3;
 }

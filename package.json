@@ -11,10 +11,22 @@
     "dev:backend": "pnpm --filter @bond-yield/backend dev",
     "dev:frontend": "pnpm --filter @bond-yield/frontend dev",
     "lint": "pnpm -r lint",
-    "test": "pnpm -r test"
+    "format": "prettier --write \"packages/**/*.{ts,tsx,json,css}\"",
+    "format:check": "prettier --check \"packages/**/*.{ts,tsx,json,css}\"",
+    "test": "pnpm -r test",
+    "ci": "pnpm run lint && pnpm run format:check && pnpm run build:shared && pnpm run test && pnpm run build"
   },
   "packageManager": "pnpm@9.14.2",
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^9.39.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "prettier": "^3.8.1",
+    "typescript-eslint": "^8.56.1"
   }
 }

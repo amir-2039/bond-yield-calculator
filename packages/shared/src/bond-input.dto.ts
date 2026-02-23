@@ -1,10 +1,4 @@
-import {
-  IsEnum,
-  IsNumber,
-  Max,
-  Min,
-  IsPositive,
-} from 'class-validator';
+import { IsEnum, IsNumber, Max, Min, IsPositive } from 'class-validator';
 import { CouponFrequency } from './coupon-frequency.enum';
 
 /**

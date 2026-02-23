@@ -23,7 +23,6 @@ export const VALIDATION_MESSAGES = {
     MAX: 'Years to maturity must not exceed 100',
   },
   COUPON_FREQUENCY: {
-    INVALID: (validValues: string) =>
-      `Coupon frequency must be one of: ${validValues}`,
+    INVALID: (validValues: string) => `Coupon frequency must be one of: ${validValues}`,
   },
 } as const;

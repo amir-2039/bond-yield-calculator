@@ -42,7 +42,7 @@ export function BondForm({
           id="annualCouponRate"
           label="Annual coupon rate (%)"
           value={value.annualCouponRate}
-          onChange={(v) => onChange({ ...value, annualCouponRate: Number(v) ?? 0 })}
+          onChange={(v) => onChange({ ...value, annualCouponRate: Number(v) || 0 })}
           error={errors.annualCouponRate}
           min={0}
           max={100}
@@ -60,7 +60,7 @@ export function BondForm({
           id="yearsToMaturity"
           label="Years to maturity"
           value={value.yearsToMaturity}
-          onChange={(v) => onChange({ ...value, yearsToMaturity: Number(v) ?? 0 })}
+          onChange={(v) => onChange({ ...value, yearsToMaturity: Number(v) || 0 })}
           error={errors.yearsToMaturity}
           min={0.01}
           max={100}
@@ -72,7 +72,10 @@ export function BondForm({
             id="couponFrequency"
             value={value.couponFrequency}
             onChange={(e) =>
-              onChange({ ...value, couponFrequency: e.target.value as BondInput['couponFrequency'] })
+              onChange({
+                ...value,
+                couponFrequency: e.target.value as BondInput['couponFrequency'],
+              })
             }
           >
             {FREQUENCY_OPTIONS.map(({ value, label }) => (

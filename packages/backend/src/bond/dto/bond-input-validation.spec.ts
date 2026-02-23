@@ -15,9 +15,7 @@ describe('BondInputDto validation', () => {
   async function validateInput(plain: object): Promise<string[]> {
     const dto = plainToInstance(BondInputDto, plain);
     const errors = await validate(dto);
-    return errors.flatMap((e) =>
-      e.constraints ? Object.values(e.constraints) : []
-    );
+    return errors.flatMap((e) => (e.constraints ? Object.values(e.constraints) : []));
   }
 
   it('passes for valid input', async () => {
