@@ -1,0 +1,24 @@
+# AWS Amplify build spec for frontend (monorepo)
+# Build runs from repo root. Output: packages/frontend/dist
+
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - corepack enable
+        - corepack prepare pnpm@9.14.2 --activate
+        - pnpm install --frozen-lockfile
+        - pnpm run build:shared
+    build:
+      commands:
+        - pnpm run build:frontend
+  artifacts:
+    baseDirectory: packages/frontend/dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - packages/frontend/node_modules/**/*
+      - packages/shared/node_modules/**/*
