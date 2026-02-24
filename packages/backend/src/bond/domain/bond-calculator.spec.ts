@@ -75,6 +75,19 @@ describe('bond-calculator', () => {
       expect(result.totalInterestEarned).toBe(300); // 10 periods × 30/period
     });
 
+    it('YTM stays >= -100% for extreme loss bond (prevents r < -1)', () => {
+      const input = {
+        faceValue: 90,
+        annualCouponRate: 5,
+        marketPrice: 1000,
+        yearsToMaturity: 10,
+        couponFrequency: CouponFrequency.ANNUAL,
+      };
+      const result = calculateBond(input);
+      expect(result.ytm).toBeGreaterThanOrEqual(-1);
+      expect(result.ytm).toBeLessThan(0);
+    });
+
     it('YTM equals coupon rate for par bond', () => {
       const input = {
         faceValue: 1000,

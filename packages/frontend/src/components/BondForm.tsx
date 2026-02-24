@@ -37,6 +37,7 @@ export function BondForm({
           onChange={(v) => onChange({ ...value, faceValue: Number(v) || 0 })}
           error={errors.faceValue}
           min={0.01}
+          step={0.01}
         />
         <InputField
           id="annualCouponRate"
@@ -55,6 +56,7 @@ export function BondForm({
           onChange={(v) => onChange({ ...value, marketPrice: Number(v) || 0 })}
           error={errors.marketPrice}
           min={0.01}
+          step={0.01}
         />
         <InputField
           id="yearsToMaturity"

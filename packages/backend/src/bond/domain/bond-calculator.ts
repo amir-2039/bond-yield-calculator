@@ -19,6 +19,8 @@ const MONTHS_PER_PERIOD: Record<CouponFrequency, number> = {
 
 const YTM_MAX_ITERATIONS = 100;
 const YTM_TOLERANCE = 1e-10;
+/** Per-period rate floor; keeps YTM > -100% (economically meaningful) */
+const YTM_MIN_R = -0.9999;
 
 /**
  * Calculate bond yields and cash flow schedule from input.
@@ -140,6 +142,7 @@ function calculateYtm(
     const deriv = pvDerivative(r);
     if (deriv.abs().lessThan(1e-15)) break;
     r = r.minus(diff.div(deriv));
+    if (r.lessThan(YTM_MIN_R)) r = new Decimal(YTM_MIN_R);
   }
 
   const ytmPeriod = r;
