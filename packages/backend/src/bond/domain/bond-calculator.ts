@@ -27,7 +27,7 @@ const YTM_MIN_R = -0.9999;
  */
 export function calculateBond(input: BondInput): BondOutput {
   const periodsPerYear = PERIODS_PER_YEAR[input.couponFrequency];
-  const numPeriods = Math.floor(input.yearsToMaturity * periodsPerYear);
+  const numPeriods = Math.max(1, Math.floor(input.yearsToMaturity * periodsPerYear));
   const couponPerPeriod = getCouponPerPeriod(
     input.faceValue,
     input.annualCouponRate,

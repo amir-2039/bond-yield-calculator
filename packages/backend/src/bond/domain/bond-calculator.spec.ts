@@ -75,6 +75,20 @@ describe('bond-calculator', () => {
       expect(result.totalInterestEarned).toBe(300); // 10 periods × 30/period
     });
 
+    it('handles yearsToMaturity < 1 with annual frequency (numPeriods clamped to 1)', () => {
+      const input = {
+        faceValue: 1000,
+        annualCouponRate: 5,
+        marketPrice: 1000,
+        yearsToMaturity: 0.5,
+        couponFrequency: CouponFrequency.ANNUAL,
+      };
+      const result = calculateBond(input);
+      expect(result.cashFlowSchedule).toHaveLength(1);
+      expect(result.ytm).toBeGreaterThanOrEqual(-1);
+      expect(result.ytm).toBeLessThanOrEqual(1);
+    });
+
     it('YTM stays >= -100% for extreme loss bond (prevents r < -1)', () => {
       const input = {
         faceValue: 90,
